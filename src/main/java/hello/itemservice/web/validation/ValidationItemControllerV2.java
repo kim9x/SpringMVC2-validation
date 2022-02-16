@@ -10,6 +10,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -158,6 +159,10 @@ public class ValidationItemControllerV2 {
 
         log.info("objectName={}", bindingResult.getObjectName());
         log.info("target={}", bindingResult.getTarget());
+
+        // 아래의 검증 로직과 동일한 로직으로 사용할 수 있다.
+        // 그러나 단순한 기능만 제공 됨.
+//        ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult, "itemName", "required");
 
         // 검증 로직
         if (!StringUtils.hasText(item.getItemName())) {
